@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->loadMigrationsFrom(base_path('app/Modules/Products/Database/Migrations'));
+        $this->loadMigrationsFrom(base_path('app/Modules/Currencies/Database/Migrations'));
+
     }
 }
