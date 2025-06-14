@@ -58,7 +58,11 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [],
+            "providers": [
+                "App\\Modules\\Products\\Providers\\ProductServiceProvider",
+                "App\\Modules\\Currencies\\Providers\\CurrencyServiceProvider"
+            ]
         }
     },
     "config": {
