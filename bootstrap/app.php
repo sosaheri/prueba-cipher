@@ -3,7 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Http\Request;
+use Illuminate\Cache\RateLimiting\Limit;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,10 +14,23 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         apiPrefix: 'api',
+        using: function () {
+            RateLimiter::for('api', function (Request $request) {
+                return Limit::perMinute(2)->by($request->user()?->id ?: $request->ip());
+            });
+
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+
+            Route::middleware('api')
+                ->prefix('api')
+                ->group(base_path('routes/api.php'));
+
+        },
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->api(prepend: [
-          //  \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            'throttle:api', 
         ]);
 
         $middleware->alias([
