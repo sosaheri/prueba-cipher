@@ -5,6 +5,28 @@ namespace App\Modules\Products\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * @OA\Schema(
+ * schema="StoreProductPriceRequest",
+ * title="Store Product Price Request",
+ * description="Datos para agregar un nuevo precio a un producto.",
+ * required={"currency_id", "price"},
+ * @OA\Property(
+ * property="currency_id",
+ * type="integer",
+ * description="ID de la divisa para la cual se registra el precio. Debe existir y ser única para este producto.",
+ * example=2
+ * ),
+ * @OA\Property(
+ * property="price",
+ * type="number",
+ * format="float",
+ * minimum=0,
+ * description="El precio del producto en la divisa especificada.",
+ * example=850.75
+ * )
+ * )
+ */
 class StoreProductPriceRequest extends FormRequest
 {
     /**

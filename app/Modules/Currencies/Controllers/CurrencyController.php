@@ -20,7 +20,20 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     * path="/currencies",
+     * tags={"Currencies"},
+     * summary="Obtener lista de divisas",
+     * description="Retorna una lista de todas las divisas.",
+     * @OA\Response(
+     * response=200,
+     * description="Lista de divisas obtenida exitosamente.",
+     * @OA\JsonContent(
+     * type="array",
+     * @OA\Items(ref="#/components/schemas/Currency")
+     * )
+     * )
+     * )
      */
     public function index(): JsonResponse
     {
@@ -29,7 +42,30 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     * path="/currencies",
+     * tags={"Currencies"},
+     * summary="Crear una nueva divisa",
+     * description="Crea una nueva divisa y la retorna.",
+     * @OA\RequestBody(
+     * required=true,
+     * description="Datos de la divisa a crear",
+     * @OA\JsonContent(ref="#/components/schemas/StoreCurrencyRequest")
+     * ),
+     * @OA\Response(
+     * response=201,
+     * description="Divisa creada exitosamente.",
+     * @OA\JsonContent(ref="#/components/schemas/Currency")
+     * ),
+     * @OA\Response(
+     * response=422,
+     * description="Error de validación.",
+     * @OA\JsonContent(
+     * @OA\Property(property="message", type="string", example="The given data was invalid."),
+     * @OA\Property(property="errors", type="object", example={"name": {"The name field is required."}})
+     * )
+     * )
+     * )
      */
     public function store(StoreCurrencyRequest $request): JsonResponse
     {
@@ -38,7 +74,31 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     * path="/currencies/{id}",
+     * tags={"Currencies"},
+     * summary="Obtener divisa por ID",
+     * description="Retorna una divisa específica por su ID.",
+     * @OA\Parameter(
+     * name="id",
+     * in="path",
+     * required=true,
+     * description="ID de la divisa",
+     * @OA\Schema(type="integer")
+     * ),
+     * @OA\Response(
+     * response=200,
+     * description="Divisa obtenida exitosamente.",
+     * @OA\JsonContent(ref="#/components/schemas/Currency")
+     * ),
+     * @OA\Response(
+     * response=404,
+     * description="Divisa no encontrada.",
+     * @OA\JsonContent(
+     * @OA\Property(property="message", type="string", example="Resource not found.")
+     * )
+     * )
+     * )
      */
     public function show(int $id): JsonResponse
     {
@@ -51,7 +111,40 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     * path="/currencies/{id}",
+     * tags={"Currencies"},
+     * summary="Actualizar divisa",
+     * description="Actualiza una divisa existente por su ID y la retorna.",
+     * @OA\Parameter(
+     * name="id",
+     * in="path",
+     * required=true,
+     * description="ID de la divisa a actualizar",
+     * @OA\Schema(type="integer")
+     * ),
+     * @OA\RequestBody(
+     * required=true,
+     * description="Datos de la divisa a actualizar",
+     * @OA\JsonContent(ref="#/components/schemas/UpdateCurrencyRequest")
+     * ),
+     * @OA\Response(
+     * response=200,
+     * description="Divisa actualizada exitosamente.",
+     * @OA\JsonContent(ref="#/components/schemas/Currency")
+     * ),
+     * @OA\Response(
+     * response=404,
+     * description="Divisa no encontrada.",
+     * @OA\JsonContent(
+     * @OA\Property(property="message", type="string", example="Resource not found.")
+     * )
+     * ),
+     * @OA\Response(
+     * response=422,
+     * description="Error de validación."
+     * )
+     * )
      */
     public function update(UpdateCurrencyRequest $request, int $id): JsonResponse
     {
@@ -64,7 +157,30 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     * path="/currencies/{id}",
+     * tags={"Currencies"},
+     * summary="Eliminar divisa",
+     * description="Elimina una divisa por su ID.",
+     * @OA\Parameter(
+     * name="id",
+     * in="path",
+     * required=true,
+     * description="ID de la divisa a eliminar",
+     * @OA\Schema(type="integer")
+     * ),
+     * @OA\Response(
+     * response=204,
+     * description="Divisa eliminada exitosamente (No Content)."
+     * ),
+     * @OA\Response(
+     * response=404,
+     * description="Divisa no encontrada.",
+     * @OA\JsonContent(
+     * @OA\Property(property="message", type="string", example="Resource not found.")
+     * )
+     * )
+     * )
      */
     public function destroy(int $id): JsonResponse
     {
