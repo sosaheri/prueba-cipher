@@ -28,6 +28,7 @@ class ProductController extends Controller
      * tags={"Products"},
      * summary="Obtener lista de productos",
      * description="Retorna una lista paginada de productos, con opción de filtros y ordenación. Incluye la divisa base y todos los precios asociados a cada producto.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="name",
      * in="query",
@@ -104,6 +105,7 @@ class ProductController extends Controller
      * tags={"Products"},
      * summary="Crear un nuevo producto",
      * description="Crea un nuevo producto y lo retorna. Los campos `price`, `tax_cost` y `manufacturing_cost` deben ser numéricos. `currency_id` debe existir en la tabla de divisas.",
+     * security={{"sanctum":{}}}, 
      * @OA\RequestBody(
      * required=true,
      * description="Datos del producto a crear",
@@ -136,6 +138,7 @@ class ProductController extends Controller
      * tags={"Products"},
      * summary="Obtener producto por ID",
      * description="Retorna un producto específico por su ID. Incluye la divisa base y todos los precios asociados.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="id",
      * in="path",
@@ -173,6 +176,7 @@ class ProductController extends Controller
      * tags={"Products"},
      * summary="Actualizar producto",
      * description="Actualiza un producto existente por su ID y lo retorna. Permite actualizar parcialmente el producto. Los campos `price`, `tax_cost` y `manufacturing_cost` deben ser numéricos. `currency_id` debe existir en la tabla de divisas.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="id",
      * in="path",
@@ -223,6 +227,7 @@ class ProductController extends Controller
      * tags={"Products"},
      * summary="Eliminar producto",
      * description="Elimina un producto por su ID. También elimina todos los precios asociados a este producto.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="id",
      * in="path",
@@ -259,6 +264,7 @@ class ProductController extends Controller
      * tags={"Product Prices"},
      * summary="Obtener precios de un producto",
      * description="Retorna una lista de todos los precios registrados para un producto específico en diferentes divisas.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="product_id",
      * in="path",
@@ -299,6 +305,7 @@ class ProductController extends Controller
      * tags={"Product Prices"},
      * summary="Agregar un nuevo precio a un producto",
      * description="Asocia un nuevo precio a un producto existente para una divisa específica. La combinación de `product_id` y `currency_id` debe ser única.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="product_id",
      * in="path",

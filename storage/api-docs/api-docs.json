@@ -1,10 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API para ciph3r - Heriberto Sosa",
+        "title": "Ciph3r Product API",
         "description": "API RESTful para la gestión de productos, divisas y precios de productos.",
         "contact": {
-            "email": "sosaheriberto2021@gmail.com"
+            "email": "tu_email@example.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -15,7 +15,7 @@
     "servers": [
         {
             "url": "http://127.0.0.1:8000/api",
-            "description": "Ciph3r API Test"
+            "description": "Ciph3r API Server"
         }
     ],
     "paths": {
@@ -41,7 +41,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -96,7 +101,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/currencies/{id}": {
@@ -145,7 +155,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -206,7 +221,12 @@
                     "422": {
                         "description": "Error de validación."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -246,7 +266,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/products": {
@@ -339,7 +364,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -394,7 +424,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/products/{id}": {
@@ -443,7 +478,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -525,7 +565,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -565,7 +610,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/products/{product_id}/prices": {
@@ -617,7 +667,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -699,7 +754,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         }
     },
@@ -1016,12 +1076,12 @@
             }
         },
         "securitySchemes": {
-            "apiAuth": {
+            "sanctum": {
                 "type": "http",
-                "description": "Login with email and password to get the authentication token",
-                "name": "Token based Auth",
+                "description": "Autenticación con Laravel Sanctum. Genera un token usando /api/auth/login y envíalo en el encabezado 'Authorization: Bearer {token}'.",
+                "name": "Sanctum Token based Auth",
                 "in": "header",
-                "bearerFormat": "JWT",
+                "bearerFormat": "Sanctum",
                 "scheme": "bearer"
             }
         }

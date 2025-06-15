@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
                 if (File::isDirectory($moduleMigrationsPath)) {
                     $this->loadMigrationsFrom($moduleMigrationsPath);
-                    \Log::info("Cargando migraciones para el módulo: " . basename($moduleDir) . " desde " . $moduleMigrationsPath);
+                    // \Log::info("Cargando migraciones para el módulo: " . basename($moduleDir) . " desde " . $moduleMigrationsPath);
                 }
             }
         }
@@ -59,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
                     Route::middleware('api') 
                         ->prefix('api')    
                         ->group($moduleApiRoutesPath); 
-                    \Log::info("Cargando rutas API para el módulo: " . $moduleName . " desde " . $moduleApiRoutesPath);
+                    // \Log::info("Cargando rutas API para el módulo: " . $moduleName . " desde " . $moduleApiRoutesPath);
                 }
             }
         }

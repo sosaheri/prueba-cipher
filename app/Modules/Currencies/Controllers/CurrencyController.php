@@ -25,6 +25,7 @@ class CurrencyController extends Controller
      * tags={"Currencies"},
      * summary="Obtener lista de divisas",
      * description="Retorna una lista de todas las divisas.",
+     * security={{"sanctum":{}}}, 
      * @OA\Response(
      * response=200,
      * description="Lista de divisas obtenida exitosamente.",
@@ -47,6 +48,7 @@ class CurrencyController extends Controller
      * tags={"Currencies"},
      * summary="Crear una nueva divisa",
      * description="Crea una nueva divisa y la retorna.",
+     * security={{"sanctum":{}}}, 
      * @OA\RequestBody(
      * required=true,
      * description="Datos de la divisa a crear",
@@ -79,6 +81,7 @@ class CurrencyController extends Controller
      * tags={"Currencies"},
      * summary="Obtener divisa por ID",
      * description="Retorna una divisa específica por su ID.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="id",
      * in="path",
@@ -116,6 +119,7 @@ class CurrencyController extends Controller
      * tags={"Currencies"},
      * summary="Actualizar divisa",
      * description="Actualiza una divisa existente por su ID y la retorna.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="id",
      * in="path",
@@ -162,6 +166,7 @@ class CurrencyController extends Controller
      * tags={"Currencies"},
      * summary="Eliminar divisa",
      * description="Elimina una divisa por su ID.",
+     * security={{"sanctum":{}}}, 
      * @OA\Parameter(
      * name="id",
      * in="path",

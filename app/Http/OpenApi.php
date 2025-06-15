@@ -5,10 +5,10 @@ namespace App\Http;
 /**
  * @OA\Info(
  * version="1.0.0",
- * title="API para ciph3r - Heriberto Sosa",
+ * title="Ciph3r Product API",
  * description="API RESTful para la gestión de productos, divisas y precios de productos.",
  * @OA\Contact(
- * email="sosaheriberto2021@gmail.com"
+ * email="tu_email@example.com"
  * ),
  * @OA\License(
  * name="Apache 2.0",
@@ -18,7 +18,7 @@ namespace App\Http;
  *
  * @OA\Server(
  * url=L5_SWAGGER_CONST_HOST,
- * description="Ciph3r API Test"
+ * description="Ciph3r API Server"
  * )
  *
  * @OA\Tag(
@@ -33,15 +33,19 @@ namespace App\Http;
  * name="Product Prices",
  * description="Operaciones relacionadas con los precios de productos en diferentes divisas."
  * )
+ * @OA\Tag(
+ * name="Authentication", 
+ * description="API Endpoints para autenticación de usuarios sanctum."
+ * )
  *
  * @OA\SecurityScheme(
  * type="http",
- * description="Login with email and password to get the authentication token",
- * name="Token based Auth",
+ * description="Autenticación con Laravel Sanctum. Genera un token usando /api/auth/login y envíalo en el encabezado 'Authorization: Bearer {token}'.",
+ * name="Sanctum Token based Auth",
  * in="header",
  * scheme="bearer",
- * bearerFormat="JWT",
- * securityScheme="apiAuth",
+ * bearerFormat="Sanctum", 
+ * securityScheme="sanctum", 
  * )
  */
 class OpenApi {}
