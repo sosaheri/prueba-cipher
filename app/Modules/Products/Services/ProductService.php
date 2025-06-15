@@ -6,6 +6,7 @@ use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\ProductPrice;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Cache;
 
 class ProductService
 {
@@ -25,6 +26,8 @@ class ProductService
         int $perPage = 15
     ): LengthAwarePaginator
     {
+
+        
         $query = Product::query()->with(['currency', 'prices.currency']);
 
         if (isset($filters['name'])) {

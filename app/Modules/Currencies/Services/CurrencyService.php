@@ -4,6 +4,7 @@ namespace App\Modules\Currencies\Services;
 
 use App\Modules\Currencies\Models\Currency;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Cache;
 
 class CurrencyService
 {
@@ -12,7 +13,9 @@ class CurrencyService
      */
     public function getAllCurrencies()
     {
-        return Currency::all();
+        return Cache::remember('all_currencies', 86400, function () {
+            return Currency::all();
+        });
     }
 
     /**
@@ -36,6 +39,7 @@ class CurrencyService
     public function createCurrency(array $data): Currency
     {
         return Currency::create($data);
+        Cache::forget('all_currencies');
     }
 
     /**
