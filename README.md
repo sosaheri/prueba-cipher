@@ -131,18 +131,18 @@ php artisan serve
 Aquí se listan los principales endpoints de la API. La API debe devuelve los datos en formato JSON.
 
 
-Base URL: http://127.0.0.1:8000/api
-Método	Endpoint	Descripción	Autenticación
-GET	/products	Obtener lista de productos. Soporta paginación y filtros.	Opcional
-POST	/products	Crear un nuevo producto.	Requerida
-GET	/products/{id}	Obtener un producto por ID.	Opcional
-PUT	/products/{id}	Actualizar un producto.	Requerida
-DELETE	/products/{id}	Eliminar un producto.	Requerida
-GET	/products/{id}/prices	Obtener lista de precios de un producto.	Opcional
-POST	/products/{id}/prices	Crear un nuevo precio para un producto.	Requerida
-GET	/currencies	Obtener lista de divisas.	Opcional
-POST	/auth/login	Iniciar sesión y obtener token Sanctum	No
-GET	/orders/hello	Ruta de prueba del módulo Orders (ejemplo generado por make:module)	Opcional
+- Base URL: http://127.0.0.1:8000/api
+- Método	Endpoint	Descripción	Autenticación
+- GET	/products	Obtener lista de productos. Soporta paginación y filtros.	Opcional
+- POST	/products	Crear un nuevo producto.	Requerida
+- GET	/products/{id}	Obtener un producto por ID.	Opcional
+- PUT	/products/{id}	Actualizar un producto.	Requerida
+- DELETE	/products/{id}	Eliminar un producto.	Requerida
+- GET	/products/{id}/prices	Obtener lista de precios de un producto.	Opcional
+- POST	/products/{id}/prices	Crear un nuevo precio para un producto.	Requerida
+- GET	/currencies	Obtener lista de divisas.	Opcional
+- POST	/auth/login	Iniciar sesión y obtener token Sanctum	No
+
 
 
 ## 7. Autenticación (Sanctum)
