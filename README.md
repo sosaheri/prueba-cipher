@@ -183,5 +183,5 @@ Para acceder a la documentación de Swagger:
     Asegúrate de que el servidor de Laravel esté corriendo (php artisan serve).
     Accede a la siguiente URL en tu navegador: http://127.0.0.1:8000/api/documentation
 
-También se proporcionan archivos de colección para Postman e Insomnia para facilitar las pruebas manuales de los endpoints.
+También se proporciona archivo de colección para Postman. Para facilitar las pruebas manuales de los endpoints.
 
