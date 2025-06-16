@@ -23,11 +23,17 @@ API RESTful construida con Laravel 12 para la gestión de productos y divisas, d
 
 **Arquitectura Monolito Modular:** El proyecto sigue una arquitectura monolito modular, donde las funcionalidades están divididas en módulos lógicos (app/Modules). Esto mejora la organización y mantenibilidad del código, permitiendo una clara separación de responsabilidades y facilitando el escalado de funciones específicas.
 
-**Capa de Servicios:** Se implementó una capa de Services (app/Services o dentro de cada módulo) para contener la lógica de negocio. Esto desvincula los controladores de la lógica de la base de datos y otras operaciones, haciendo los controladores más "delgados" y enfocados en manejar las solicitudes HTTP.
+**Capa de Servicios:** Se implementó una capa de Services (app/Services dentro de cada módulo) para contener la lógica de negocio. Esto desvincula los controladores de la lógica de la base de datos y otras operaciones, haciendo los controladores enfocados en manejar las solicitudes HTTP.
 
-**Rate Limiting Global:** La implementación de un Rate Limiter global para las rutas API protege contra el uso excesivo y asegura la disponibilidad y seguridad del servicio.
+**Capa de Request:** Se implementó una capa de Request (app/Request dentro de cada módulo) para contener la lógica de validación de datos del negocio.
 
-**Caching Estratégico:** El caching se aplicó a endpoints de lectura frecuentes con datos estables para maximizar el rendimiento y reducir la carga de la base de datos, sin comprometer la frescura de los datos críticos. La clave de caché dinámica asegura que las respuestas cacheadas sean específicas a cada consulta.
+**Capa de Resource:** Se implementó una capa de Resource (app/Resource dentro de cada módulo) para estandarizar y proteger los datos a ser retornados a los usuarios del API.
+
+**Acceso a recursos por token:** Se implementó una capa de seguridad, con acceso por medio de token con santum.
+
+**Limitación de peticiones global:** Se implementó una capa de seguridad con la implementación de un Rate Limiter para las rutas API protege contra el uso excesivo y asegura la disponibilidad y seguridad del servicio.
+
+**Cache:** El caching se aplicó a endpoints de lectura frecuentes con datos estables para maximizar el rendimiento y reducir la carga de la base de datos, sin comprometer la frescura de los datos críticos. La clave de caché dinámica asegura que las respuestas cacheadas sean específicas a cada consulta.
 
 **Observación sobre Registro de Usuarios:** Se omitió la creación de un endpoint específico para el registro de usuarios (/api/auth/register) para enfocar el tiempo de la prueba en los requisitos principales de gestión de productos y las características adicionales solicitadas (Rate Limiting, Caching, Scaffolding). Se reconoce que un endpoint de registro sería necesario antes de la puesta en producción.
 
@@ -132,17 +138,25 @@ Aquí se listan los principales endpoints de la API. La API debe devuelve los da
 
 
 - Base URL: http://127.0.0.1:8000/api
-- Método	Endpoint	Descripción	Autenticación
-- GET	/products	Obtener lista de productos. Soporta paginación y filtros.	Opcional
-- POST	/products	Crear un nuevo producto.	Requerida
-- GET	/products/{id}	Obtener un producto por ID.	Opcional
-- PUT	/products/{id}	Actualizar un producto.	Requerida
-- DELETE	/products/{id}	Eliminar un producto.	Requerida
-- GET	/products/{id}/prices	Obtener lista de precios de un producto.	Opcional
-- POST	/products/{id}/prices	Crear un nuevo precio para un producto.	Requerida
-- GET	/currencies	Obtener lista de divisas.	Opcional
-- POST	/auth/login	Iniciar sesión y obtener token Sanctum	No
 
+
+- Método	           Endpoint	                 Descripción	                                            Autenticación
+
+BASE
+- GET	               /products	             Obtener lista de productos. Soporta paginación y filtros.	Requerida
+- POST	               /products	             Crear un nuevo producto.	                                Requerida
+- GET	               /products/{id}	         Obtener un producto por ID.	                            Requerida
+- PUT	               /products/{id}	         Actualizar un producto.	                                Requerida
+- DELETE	           /products/{id}	         Eliminar un producto.	                                    Requerida
+- GET	               /products/{id}/prices	 Obtener lista de precios de un producto.	                Requerida
+- POST	               /products/{id}/prices	 Crear un nuevo precio para un producto.	                Requerida
+
+ADICIONALES
+- GET	               /currencies	             Obtener lista de divisas.	                                Requerida
+- GET	               /health	                 Salud del API.            	                                No
+- POST	               /auth/login	             Iniciar sesión y obtener token Sanctum	                    No
+- POST	               /auth/logout	             Cerrar sesión                        	                    Requerida
+- POST	               /auth/me	                 Datos de sesion                    	                    Requerida
 
 
 ## 7. Autenticación (Sanctum)
